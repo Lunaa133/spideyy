@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      h1{text-align: center;}
+      div{text-align: center;}
+      p{text-align: center;}
+    </style>
+  </head>
+
+  <body style="font-family: 'OCR A Std', monospace; background-image: url('pics/bg.jpg'); background-size: cover;">
+    
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <!--left bar w picss-->
+   
+    <!-- 1. Static Background Layer-->
+    <div style="position: fixed; top: 30px; bottom: 0; left: 0; width: 180px; z-index: 5; pointer-events: none;">
+      <img src="pics/mantar.png" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+    </div>
+
+    <!-- 2. Transparent Scrollable Layer -->
+    <div style="position: fixed; top: 30px; bottom: 0; left: 0; width: 400px; overflow-y: auto; overflow-x: hidden; background: rgba(0, 0, 0, 0); z-index: 10;">
+      
+      <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding: 40px 0 60px 0;">
+        
+        <!-- 1st pic + wiki -->
+        <div style="margin-left: 30px;">
+          <img style="width: 175px; height: auto; transform: rotate(-5deg);" src="pics/yey.png">
+          <a href="https://en.wikipedia.org/wiki/Andrew_Garfield" target="_blank" style="color: white; display: block; text-align: center; margin-top: 5px;">ANDREW!!</a>
+        </div>
+
+        <!-- gwen-->
+        <img style="width: 150px; height: auto; transform: rotate(10deg); margin-left: 40px; margin-top: 20px" src="pics/memories.png">
+
+        <!-- pic 2 -->
+        <img style="margin-left: -5px; width: 240px; height: auto; margin-top: 20px;" src="pics/anotherpic.png">
+
+        <!-- cam -->
+        <img style="width: 280px; height: auto; margin-left: 10px; margin-top: 20px;" src="pics/cam.png">
+
+      </div>
+    </div>
+
+    <!--top bar YEYY-->
+    <div style="height: 30px; position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-around; background-color: rgba(0, 12, 233, 0.526); align-items: center; z-index: 100;">
+      <p style="color: red;">SpideyyOS</p>
+      <p id="timeElement" style="color: red">Time</p>
+    </div>
+
+    <!--welcome window - draggable i hope-->
+    <div id="window" style=" position: absolute; background-color: rgba(56, 56, 255, 0); padding: 0; border-radius: 10px; text-align: center; width: 600px; z-index: 100; display: block; top: 25%; left: 35%;">
+	    <img style="width: 100%; height: auto;" src="pics/worthit.png">
+      <button onclick="closeWelcomeWindow()" style="position: absolute; top: 8px; right: 10px; width: 30px; height: 30px; background: transparent; border: none; cursor: pointer; z-index: 1003;"></button>
+      <div id="windowheader" style="height: 30px; width: 100%; cursor: move; position: absolute; top: 0; left: 0; z-index: 1002;"></div>
+    </div>
+
+    <!--first app-->
+    <div id="desktopApps" style="padding-top: 64px; padding-left: 16px;">
+      <p>fit maker</p>
+    </div>
+
+    <script src="script.js"></script>
+
+    <div id="desktopApps" style="padding-top: 64px; padding-left: 16px; background-image: url(pics/notes.png); width: 100px; height: automatic; background-size: cover; background-repeat: no-repeat;">
+      <p style="color: white;">notes</p>
+    </div>
+
+  </body>
+
+</html>
