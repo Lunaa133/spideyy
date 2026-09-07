@@ -14,12 +14,12 @@
 
     <!--left bar w picss-->
    
-    <!-- 1. Static Background Layer-->
+    <!--static bg-->
     <div style="position: fixed; top: 30px; bottom: 0; left: 0; width: 180px; z-index: 5; pointer-events: none;">
       <img src="pics/mantar.png" style="width: 100%; height: 100%; object-fit: cover; display: block;">
     </div>
 
-    <!-- 2. Transparent Scrollable Layer -->
+    <!--scrollable layer -->
     <div style="position: fixed; top: 30px; bottom: 0; left: 0; width: 400px; overflow-y: auto; overflow-x: hidden; background: rgba(0, 0, 0, 0); z-index: 10;">
       
       <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding: 40px 0 60px 0;">
@@ -55,15 +55,93 @@
       <div id="windowheader" style="height: 30px; width: 100%; cursor: move; position: absolute; top: 0; left: 0; z-index: 1002;"></div>
     </div>
 
-    <!--first app-->
-    <div id="desktopApps" style="padding-top: 64px; padding-left: 16px;">
-      <p>fit maker</p>
-    </div>
-
     <script src="script.js"></script>
 
-    <div id="desktopApps" style="padding-top: 64px; padding-left: 16px; background-image: url(pics/notes.png); width: 100px; height: automatic; background-size: cover; background-repeat: no-repeat;">
-      <p style="color: white;">notes</p>
+    <!--notes app-->
+    <!-- Desktop Icon -->
+    <div id="desktopApps" class="desktop-icon" style="position: absolute; top: 80px; left: 320px; z-index: 20; cursor: pointer; text-align: center;" onclick="handleIconClick(event, this, 'notes')">
+  
+      <img class="pixel-spider" src="pics/spider.gif">
+  
+      <img src="pics/notes.png" style="width: 60px; height: auto; display: block; margin: 0 auto; pointer-events: none;" alt="Notes">
+      <p style="color: white; margin-top: 5px; font-size: 12px; text-shadow: 1px 1px 2px black; pointer-events: none;">notes</p>
+    
+    </div>
+
+    <!-- Journal Window -->
+    <div id="notesWindow" class="app-window notes-container">
+      <div id="notesWindowheader" class="notes-header">
+        <span>✩ notes ✩</span>
+        <span onclick="closeNotesApp()" class="close-btn">✕</span>
+      </div>
+      
+      <div class="notes-body">
+        <textarea id="notesTextarea" placeholder="Write entry here..."></textarea>
+      </div>
+
+      <!-- Journal Action Bar -->
+      <div class="journal-toolbar">
+        <select id="notebookDropdown" class="notebook-select" onchange="switchNotebook(this.value)">
+          <!-- Options added via JavaScript -->
+        </select>
+        
+        <button class="journal-btn" onclick="createNewNotebook()">+ notebook</button>
+        <button class="journal-btn delete-btn" onclick="deleteCurrentNotebook()" title="Delete Notebook">- notebook</button>
+        
+        <div style="display: flex; align-items: center; gap: 5px;">
+          <button class="journal-btn" onclick="prevPage()">&lt;</button>
+          <span id="pageIndicator" style="color: #fff; font-size: 11px; font-family: monospace;">page 1/1</span>
+          <button class="journal-btn" onclick="nextPage()">&gt;</button>
+        </div>
+
+        <button class="journal-btn" onclick="addPageToNotebook()">+ page</button>
+        <button class="journal-btn delete-btn" onclick="deleteCurrentPage()" title="Delete Page">- page</button>
+        
+      </div>
+    </div>
+
+    <!-- Desktop Music Icon -->
+    <div id="musicIcon" class="desktop-icon" style="position: absolute; top: 180px; left: 320px; z-index: 20; cursor: pointer; text-align: center;" onclick="handleIconClick(event, this, 'music')">
+      <img class="pixel-spider" src="pics/spider.gif" alt="spider pixel" />
+      <img src="https://i.pinimg.com/736x/cf/1c/ea/cf1ceaa9cce3e2e4503bf991d3f797ee.jpg" style="width: 60px; height: auto; display: block; margin: 0 auto; pointer-events: none;" alt="Music">
+      <p style="color: white; margin-top: 5px; font-size: 12px; text-shadow: 1px 1px 2px black; pointer-events: none;">music</p>
+    </div>
+
+    <!-- Music Player Window -->
+    <div id="musicWindow" class="app-window music-container">
+      <div id="musicWindowheader" class="notes-header">
+        <span>✩ music ✩</span>
+        <span onclick="closeMusicApp()" class="close-btn">✕</span>
+      </div>
+
+      <div class="music-body">
+        <!-- Now Playing Display -->
+        <div class="player-display">
+          <div id="trackTitle" class="track-title">select song</div>
+          <div id="trackArtist" class="track-artist">:P</div>
+          <audio id="audioPlayer" src=""></audio>
+        </div>
+
+        <!-- Controls -->
+        <div class="player-controls">
+          <button class="journal-btn" onclick="prevTrack()">⏮</button>
+          <button id="playBtn" class="journal-btn" onclick="togglePlay()">▶</button>
+          <button class="journal-btn" onclick="nextTrack()">⏭</button>
+        </div>
+
+        <!-- Playlist Section -->
+        <div class="playlist-header">
+          <span>PLAYLIST</span>
+          <label class="journal-btn upload-btn">
+            + Add MP3
+            <input type="file" id="mp3Uploader" accept="audio/mp3, audio/mpeg" style="display: none;" onchange="handleFileUpload(event)">
+          </label>
+        </div>
+
+        <ul id="playlistList" class="playlist-list">
+          <!-- Loaded dynamically via JS -->
+        </ul>
+      </div>
     </div>
 
   </body>
