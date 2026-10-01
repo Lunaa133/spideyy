@@ -3,8 +3,8 @@ div::-webkit-scrollbar {
 }
 
 div {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 body {
@@ -17,35 +17,32 @@ html, body {
   padding: 0;
   width: 100vw;
   height: 100vh;
-  overflow: hidden; /* Stops page expansion entirely */
+  overflow: hidden;
 }
 
-/* Keep desktop icon container relative so spider positions over it */
 .desktop-icon {
   position: absolute;
   user-select: none;
 }
 
-/* Pixel Spider Overlay */
+/*pixel spider*/
 .pixel-spider {
   position: absolute;
-  top: -12px;         /* Adjust position above the icon */
-  right: -8px;        /* Adjust position on top right corner */
-  width: 28px;        /* Adjust spider size as needed */
+  top: -12px;
+  right: -8px;
+  width: 28px;
   height: auto;
-  display: none;      /* Hidden when icon is not selected */
+  display: none;
   pointer-events: none;
   z-index: 30;
-  image-rendering: pixelated; /* Keeps retro GIF pixels sharp */
+  image-rendering: pixelated;
 }
 
-/* Show Pixel Spider when icon is selected */
 .desktop-icon.icon-selected .pixel-spider {
   display: block;
 }
 
-
-/* Window Base Styling */
+/*window style*/
 .app-window {
   background: #111;
   border: 2px solid #00f;
@@ -56,7 +53,6 @@ html, body {
   flex-direction: column;
 }
 
-/* Draggable Header Bar */
 .window-header {
   background: rgb(45, 45, 52);
   color: #fff;
@@ -83,23 +79,22 @@ html, body {
   color: #ff0000;
 }
 
-/* Window Container - Solid dark window backing with taller height */
+/*notes*/
 .notes-container {
   position: absolute;
   top: 10%;
   left: 35%;
-  width: 480px;            /* Narrower width */
-  height: 580px;           /* Increased height to make it longer */
+  width: 480px;
+  height: 580px;
   display: none;
   z-index: 200;
-  background: #111 !important;
-  border: 2px solid #00f !important;
-  border-radius: 8px !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7) !important;
+  background: #111;
+  border: 2px solid #00f;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
   flex-direction: column;
 }
 
-/* Header Bar */
 .notes-header {
   background: rgb(45, 45, 52);
   padding: 6px 12px;
@@ -116,17 +111,15 @@ html, body {
   font-size: 13px;
 }
 
-/* Notebook Body Container */
 .notes-body {
   flex: 1;
   background-image: url('pics/page.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  padding: 40px 45px 30px 55px; /* Padds text to fit longer margins */
+  padding: 40px 45px 30px 55px;
   box-sizing: border-box;
 }
 
-/* Notebook Text Area */
 #notesTextarea {
   width: 100%;
   height: 100%;
@@ -137,38 +130,11 @@ html, body {
   font-family: 'Courier New', Courier, monospace;
   font-size: 14px;
   font-weight: bold;
-  line-height: 22px;         /* Keeps cursor mapped to lines */
+  line-height: 22px;
   color: #1a1a1a;
   box-sizing: border-box;
 }
 
-/* Bottom Action Bar */
-.journal-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 12px;
-  background: #111;
-  border-top: 1px solid #222;
-}
-
-/* Textarea transparent over notebook lines */
-#notesTextarea {
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  border: none;
-  outline: none;
-  resize: none;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 20px;
-  color: #1a1a1a;
-  box-sizing: border-box;
-}
-
-/* Journal Navigation & Controls Toolbar */
 .journal-toolbar {
   display: flex;
   justify-content: space-between;
@@ -195,6 +161,11 @@ html, body {
   border-color: #0012e9;
 }
 
+.journal-btn.delete-btn:hover {
+  background: #d32f2f;
+  border-color: #ff4d4d;
+}
+
 .notebook-select {
   background: #222;
   color: #fff;
@@ -205,13 +176,7 @@ html, body {
   border-radius: 4px;
 }
 
-/* Delete button accent */
-.journal-btn.delete-btn:hover {
-  background: #d32f2f !important;
-  border-color: #ff4d4d !important;
-}
-
-/* Music Container */
+/*MUSIIIIIIIIIC*/
 .music-container {
   position: absolute;
   top: 15%;
@@ -236,7 +201,6 @@ html, body {
   background: #3c0000;
 }
 
-/* Screen Display */
 .player-display {
   background: #0c0c0c;
   border: 1px solid #0c0c0c;
@@ -262,7 +226,6 @@ html, body {
   margin-top: 4px;
 }
 
-/* Control Buttons */
 .player-controls {
   display: flex;
   justify-content: center;
@@ -274,7 +237,6 @@ html, body {
   padding: 6px 16px;
 }
 
-/* Playlist Layout */
 .playlist-header {
   display: flex;
   justify-content: space-between;
@@ -295,8 +257,8 @@ html, body {
   padding: 0;
   margin: 0;
   flex: 1;
-  max-height: 220px;          /* Sets scroll threshold */
-  overflow-y: auto !important; /* Enables vertical scrolling */
+  max-height: 220px;
+  overflow-y: auto;
   border: 1px solid #222;
   border-radius: 4px;
   background: #0a0a0a;
@@ -319,7 +281,7 @@ html, body {
 }
 
 .playlist-item.active {
-  background: #6d0000;);
+  background: #6d0000;
   color: #fff;
   font-weight: bold;
 }
