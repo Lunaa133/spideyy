@@ -1,4 +1,4 @@
-//Clock Display
+//clock
 setInterval(function () {
   const timeEl = document.querySelector("#timeElement");
   if (timeEl) {
@@ -6,7 +6,7 @@ setInterval(function () {
   }
 }, 1000);
 
-//Welcome Window Close
+
 function closeWelcomeWindow() {
   const closable = document.getElementById("window");
   if (closable) {
@@ -14,8 +14,7 @@ function closeWelcomeWindow() {
   }
 }
 
-//Window Dragging
-// Global Z-Index Counter for Window Focus
+//dragging
 let highestZIndex = 300;
 
 function bringToFront(element) {
@@ -24,14 +23,13 @@ function bringToFront(element) {
   element.style.zIndex = highestZIndex;
 }
 
-// Updated Universal Drag Function with Boundary Constraints
 function drag(element) {
   if (!element) return;
 
   var ix = 0, iy = 0, cx = 0, cy = 0;
   const header = document.getElementById(element.id + "header");
 
-  // Bring window to front when clicked anywhere inside it
+  // clicked window to front
   element.addEventListener("mousedown", function () {
     bringToFront(element);
   });
@@ -64,28 +62,28 @@ function drag(element) {
     ix = e.clientX;
     iy = e.clientY;
 
-    // Calculate tentative coordinates
+
     let newTop = element.offsetTop - cy;
     let newLeft = element.offsetLeft - cx;
 
-    // 1. Top Boundary (Never go under top bar - 30px)
+    // top bar limit
     const TOP_BAR_HEIGHT = 30;
     if (newTop < TOP_BAR_HEIGHT) {
       newTop = TOP_BAR_HEIGHT;
     }
 
-    // 2. Bottom Boundary (Prevents page expanding vertically)
+    // bottom of the page limit
     const maxTop = window.innerHeight - element.offsetHeight;
     if (newTop > maxTop) {
       newTop = maxTop;
     }
 
-    // 3. Left Boundary (Prevents dragging off the left screen)
+    // left/ screen limit
     if (newLeft < 0) {
       newLeft = 0;
     }
 
-    // 4. Right Boundary (Prevents disappearing off the right screen)
+    // right / screen limit
     const maxLeft = window.innerWidth - element.offsetWidth;
     if (newLeft > maxLeft) {
       newLeft = maxLeft;
