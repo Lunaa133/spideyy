@@ -68,6 +68,8 @@ new additional icons:
 
 <img width="561" height="170" alt="image" src="https://github.com/user-attachments/assets/6a32b4a6-a942-4203-94a4-372fb70c92fc" />
 
+---
+
 
 ## Software
 Used JavaScript, HTML, and CSS
