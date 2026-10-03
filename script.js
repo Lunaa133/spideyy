@@ -1,4 +1,4 @@
-//clock
+// clock
 setInterval(function () {
   const timeEl = document.querySelector("#timeElement");
   if (timeEl) {
@@ -14,7 +14,7 @@ function closeWelcomeWindow() {
   }
 }
 
-//dragging
+// dragging
 let highestZIndex = 300;
 
 function bringToFront(element) {
@@ -78,7 +78,7 @@ function drag(element) {
       newTop = maxTop;
     }
 
-    // left/ screen limit
+    // left / screen limit
     if (newLeft < 0) {
       newLeft = 0;
     }
@@ -89,7 +89,7 @@ function drag(element) {
       newLeft = maxLeft;
     }
 
-    // Apply clamped positions
+    // position update
     element.style.top = newTop + "px";
     element.style.left = newLeft + "px";
   }
@@ -100,13 +100,13 @@ function drag(element) {
   }
 }
 
-//Icon Selection & Highlight System
+// icon selection
 let currentSelectedIcon = null;
 
 function handleIconClick(e, iconElement, appType) {
   if (e) e.stopPropagation();
 
-  // Remove selection outline from previously selected icon
+  // rmv selection previously selected icon
   if (typeof currentSelectedIcon !== "undefined" && currentSelectedIcon && currentSelectedIcon !== iconElement) {
     currentSelectedIcon.classList.remove("icon-selected");
   }
@@ -114,13 +114,13 @@ function handleIconClick(e, iconElement, appType) {
   iconElement.classList.add("icon-selected");
   currentSelectedIcon = iconElement;
 
-  // Strict route check
+  // checking
   if (appType === "music") {
     openMusicApp();
   } else if (appType === "notes" || appType === "journal") {
     openNotesApp();
   } else if (appType === "welcome") {
-    // If you have a welcome window
+    // for welcome window
     const welcomeWin = document.getElementById("window");
     if (welcomeWin) {
       welcomeWin.style.display = "flex";
@@ -129,7 +129,7 @@ function handleIconClick(e, iconElement, appType) {
   }
 }
 
-//Clear spider when clicking empty space
+// rm spider when clicked elsewhere
 document.addEventListener("click", function () {
   if (currentSelectedIcon) {
     currentSelectedIcon.classList.remove("icon-selected");
@@ -137,7 +137,7 @@ document.addEventListener("click", function () {
   }
 });
 
-//App Window Controls
+// app window controls
 function openNotesApp() {
   const notesWin = document.getElementById("notesWindow");
   if (notesWin) {
@@ -153,7 +153,7 @@ function closeNotesApp() {
   }
 }
 
-// 6. Bind Dragging when DOM is Ready
+// when dom ready, start dragging
 window.addEventListener("DOMContentLoaded", function () {
   const welcomeWin = document.getElementById("window");
   if (welcomeWin) drag(welcomeWin);
@@ -162,7 +162,7 @@ window.addEventListener("DOMContentLoaded", function () {
   if (notesWin) drag(notesWin);
 });
 
-// LocalStorage Multi-Notebook Engine
+// multi notebook local storage
 let notebooks = JSON.parse(localStorage.getItem("spidey_notebooks")) || {
   "Main Journal": ["Properties of synthetic webbing..."]
 };
@@ -170,7 +170,7 @@ let notebooks = JSON.parse(localStorage.getItem("spidey_notebooks")) || {
 let currentNotebookKey = Object.keys(notebooks)[0] || "Main Journal";
 let activePageIndex = 0;
 
-// Update UI elements based on selected notebook & page
+// update ui
 function loadJournalUI() {
   const textarea = document.getElementById("notesTextarea");
   const indicator = document.getElementById("pageIndicator");
@@ -178,7 +178,6 @@ function loadJournalUI() {
 
   const currentPages = notebooks[currentNotebookKey] || [""];
 
-  // Bound index safely
   if (activePageIndex >= currentPages.length) {
     activePageIndex = currentPages.length - 1;
   }
@@ -186,17 +185,17 @@ function loadJournalUI() {
     activePageIndex = 0;
   }
 
-  // Set textarea content
+  // set textarea content
   if (textarea) {
     textarea.value = currentPages[activePageIndex] || "";
   }
 
-  // Update page counter
+  // update page counter
   if (indicator) {
     indicator.innerText = `Page ${activePageIndex + 1}/${currentPages.length}`;
   }
 
-  // Populate notebook selector dropdown
+  // populate notebook selector dropdown
   if (dropdown) {
     dropdown.innerHTML = "";
     Object.keys(notebooks).forEach(function (name) {
@@ -209,7 +208,7 @@ function loadJournalUI() {
   }
 }
 
-// Auto-save changes as you type
+// auto-save changes meanwhile typing
 window.addEventListener("DOMContentLoaded", function () {
   const textarea = document.getElementById("notesTextarea");
   
@@ -224,7 +223,7 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// Flip Pages (< and >)
+// flip pages
 function prevPage() {
   if (activePageIndex > 0) {
     activePageIndex--;
@@ -240,7 +239,7 @@ function nextPage() {
   }
 }
 
-// Add a new page to the active notebook
+// new page for current notebook
 function addPageToNotebook() {
   notebooks[currentNotebookKey].push("");
   activePageIndex = notebooks[currentNotebookKey].length - 1;
@@ -248,7 +247,7 @@ function addPageToNotebook() {
   loadJournalUI();
 }
 
-// Create an entirely new notebook
+// create new notebook
 function createNewNotebook() {
   const bookName = prompt("Enter new notebook title:", "Suit Specs");
   if (bookName && bookName.trim() !== "") {
@@ -263,7 +262,7 @@ function createNewNotebook() {
   }
 }
 
-// Switch selected notebook from dropdown
+// switch notebook
 function switchNotebook(selectedKey) {
   if (notebooks[selectedKey]) {
     currentNotebookKey = selectedKey;
@@ -272,7 +271,7 @@ function switchNotebook(selectedKey) {
   }
 }
 
-// Open and Close App Controls
+// open / close for notes
 function openNotesApp() {
   const notesWin = document.getElementById("notesWindow");
   if (notesWin) {
@@ -289,21 +288,21 @@ function closeNotesApp() {
   }
 }
 
-// Delete Current Page
+// del current page
 function deleteCurrentPage() {
   const currentPages = notebooks[currentNotebookKey];
 
-  // Prevent deleting if it's the only page left in the notebook
+  // no deletion if ist the only page
   if (currentPages.length <= 1) {
     alert("Cannot delete the only page in the notebook! Clear the text instead.");
     return;
   }
 
   if (confirm(`Delete Page ${activePageIndex + 1}?`)) {
-    // Remove active page from array
+    // rmv active page
     currentPages.splice(activePageIndex, 1);
 
-    // Adjust active index if deleting the last page
+    // adjust active index when deleting the last one
     if (activePageIndex >= currentPages.length) {
       activePageIndex = currentPages.length - 1;
     }
@@ -313,21 +312,21 @@ function deleteCurrentPage() {
   }
 }
 
-// Delete Entire Notebook
+// delete notebook
 function deleteCurrentNotebook() {
   const keys = Object.keys(notebooks);
 
-  // Prevent deleting if it's the last notebook remaining
+  // no deletion if it s the only notebook
   if (keys.length <= 1) {
     alert("Cannot delete the last notebook!");
     return;
   }
 
   if (confirm(`Are you sure you want to delete the "${currentNotebookKey}" notebook and all its pages?`)) {
-    // Remove current notebook from object
+    // rm current notebook
     delete notebooks[currentNotebookKey];
 
-    // Switch to first available notebook
+    // switch to 1st available notebook
     currentNotebookKey = Object.keys(notebooks)[0];
     activePageIndex = 0;
 
@@ -335,28 +334,25 @@ function deleteCurrentNotebook() {
     loadJournalUI();
   }
 }
+// music player
 
-// ==========================================
-// SPIDEY-ACOUSTICS MUSIC PLAYER ENGINE
-// ==========================================
-
-// Default Pre-loaded Tracks
+// default tracks
 const defaultPlaylist = [
   { title: "my direction", artist: "sum-41", url: "music/my direction.mp3" },
   { title: "staring at the sun", artist: "the offspring", url: "music/staring at the sun.mp3" },
   { title: "all messed up", artist: "sum-41", url: "music/all messed up.mp3" }
 ];
 
-// In-memory array for session uploaded tracks
+// in-memory array for session uploaded tracks
 let customPlaylist = [];
 let currentTrackIndex = 0;
 
-// Returns combined list of default + user uploaded tracks
+// combined list of default + user uploaded tracks
 function getAllTracks() {
   return [...defaultPlaylist, ...customPlaylist];
 }
 
-// Render playlist with scrollable structure and remove button
+// render playlist with scrollable structure and remove button !! yeyy
 function renderPlaylist() {
   const listEl = document.getElementById("playlistList");
   if (!listEl) return;
@@ -368,7 +364,7 @@ function renderPlaylist() {
     const li = document.createElement("li");
     li.className = `playlist-item ${index === currentTrackIndex ? "active" : ""}`;
     
-    // Track info wrapper
+    // track info
     const infoSpan = document.createElement("span");
     infoSpan.style.flex = "1";
     infoSpan.style.overflow = "hidden";
@@ -376,14 +372,14 @@ function renderPlaylist() {
     infoSpan.style.whiteSpace = "nowrap";
     infoSpan.innerHTML = `<strong>${index + 1}. ${track.title}</strong> <small style="color:#888;">- ${track.artist}</small>`;
 
-    // Click track to play
+    // click track to play
     infoSpan.addEventListener("click", function() {
       playTrack(index);
     });
 
     li.appendChild(infoSpan);
 
-    // Delete button (Allows removing custom uploaded tracks)
+    // delete button for custom track deletion
     if (index >= defaultPlaylist.length) {
       const deleteBtn = document.createElement("button");
       deleteBtn.className = "delete-track-btn";
@@ -391,7 +387,7 @@ function renderPlaylist() {
       deleteBtn.title = "Remove Track";
 
       deleteBtn.addEventListener("click", function(e) {
-        e.stopPropagation(); // Prevents track from playing when delete is clicked
+        e.stopPropagation(); // dont play tracks once deleted
         removeTrack(index);
       });
 
@@ -513,7 +509,7 @@ function handleFileUpload(event) {
   const file = event.target.files[0];
   if (!file) return;
 
-  //create url for new track
+  // create url for new track
   const blobUrl = URL.createObjectURL(file);
 
   const newTrack = {
@@ -527,7 +523,7 @@ function handleFileUpload(event) {
   // no re-upload
   event.target.value = "";
 
-  //play new track
+  // play new track
   const totalTracks = getAllTracks().length;
   playTrack(totalTracks - 1);
 }
@@ -564,4 +560,41 @@ window.addEventListener("DOMContentLoaded", function () {
   if (musicWin && typeof drag === "function") {
     drag(musicWin);
   }
+});
+
+
+const iconThemes = {
+  a: {
+    music: "https://i.pinimg.com/736x/cf/1c/ea/cf1ceaa9cce3e2e4503bf991d3f797ee.jpg",
+    notes: "pics/notes.png"
+  },
+  b: {
+    music: "pics/hey.jpg",
+    notes: "pics/nt.jpg"
+  },
+  c: {
+    music: "pics/yeahh.jpg",
+    notes: "pics/yuppi.jpg"
+  }
+};
+
+function changeAppIcons(themeName) {
+  const selectedTheme = iconThemes[themeName];
+  if (!selectedTheme) return;
+
+  // 2nd image inside to skip the little spider
+  const musicImg = document.querySelector("#musicAppIcon img:not(.pixel-spider)");
+  const notesImg = document.querySelector("#notesAppIcon img:not(.pixel-spider)");
+
+  if (musicImg) musicImg.src = selectedTheme.music;
+  if (notesImg) notesImg.src = selectedTheme.notes;
+
+  // save to selection to local
+  localStorage.setItem("spidey_icon_theme", themeName);
+}
+
+// restore
+window.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("spidey_icon_theme") || "a";
+  changeAppIcons(savedTheme);
 });

@@ -59,7 +59,7 @@
 
     <!--notes app-->
     <!-- Desktop Icon -->
-    <div id="desktopApps" class="desktop-icon" style="position: absolute; top: 80px; left: 320px; z-index: 20; cursor: pointer; text-align: center;" onclick="handleIconClick(event, this, 'notes')">
+    <div id="notesAppIcon" class="desktop-icon" style="position: absolute; top: 80px; left: 320px; z-index: 20; cursor: pointer; text-align: center;" onclick="handleIconClick(event, this, 'notes')">
   
       <img class="pixel-spider" src="pics/spider.gif">
   
@@ -101,7 +101,7 @@
     </div>
 
     <!-- Desktop Music Icon -->
-    <div id="musicIcon" class="desktop-icon" style="position: absolute; top: 180px; left: 320px; z-index: 20; cursor: pointer; text-align: center;" onclick="handleIconClick(event, this, 'music')">
+    <div id="musicAppIcon" class="desktop-icon" style="position: absolute; top: 180px; left: 320px; z-index: 20; cursor: pointer; text-align: center;" onclick="handleIconClick(event, this, 'music')">
       <img class="pixel-spider" src="pics/spider.gif" alt="spider pixel" />
       <img src="https://i.pinimg.com/736x/cf/1c/ea/cf1ceaa9cce3e2e4503bf991d3f797ee.jpg" style="width: 60px; height: auto; display: block; margin: 0 auto; pointer-events: none;" alt="Music">
       <p style="color: white; margin-top: 5px; font-size: 12px; text-shadow: 1px 1px 2px black; pointer-events: none;">music</p>
@@ -142,6 +142,13 @@
           <!-- Loaded dynamically via JS -->
         </ul>
       </div>
+    </div>
+
+    <div style="margin-top: 60px;" id="icon-theme-selector">
+      <h3 style="color: white; margin-bottom: 10px;">choose icon</h3>
+      <button style="background-color: #3c0000; color: white; border: none; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="changeAppIcons('a')">:P</button>
+      <button style="background-color: #3c0000; color: white; border: none; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="changeAppIcons('b')">:D</button>
+      <button style="background-color: #3c0000; color: white; border: none; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="changeAppIcons('c')">:O</button>
     </div>
 
   </body>
