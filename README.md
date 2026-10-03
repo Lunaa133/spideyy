@@ -8,7 +8,8 @@
 [SpideyyOS](https://lunaa133.github.io/spideyy/) is built simply because I admire Peter Parker so so much and once thought "i would love to feel like him while using my computer" . So this is designed by how I thought, would reflect Peter and look cool and be practical and fun at the same time. It has two apps, one is a notes app and the other is a **music player**. As I said, *☆practical and fun☆* . That's why music is **essential**.
 
 
-<img width="1917" height="862" alt="image" src="https://github.com/user-attachments/assets/b07fa593-9439-4430-b657-482193471b4c" />
+<img width="1917" height="868" alt="image" src="https://github.com/user-attachments/assets/97525158-0f67-40e0-a6f9-a23ef81740ba" />
+
 
 
 ---
@@ -59,9 +60,14 @@ Scrollable left bar with pictures of Peter Parker
 
 <img width="427" height="862" alt="image" src="https://github.com/user-attachments/assets/c068f000-7086-4244-82bd-b122f1e58975" />
 
-
-
 ---
+
+Theme options for app icons !!!
+
+new additional icons: 
+
+<img width="561" height="170" alt="image" src="https://github.com/user-attachments/assets/6a32b4a6-a942-4203-94a4-372fb70c92fc" />
+
 
 ## Software
 Used JavaScript, HTML, and CSS
