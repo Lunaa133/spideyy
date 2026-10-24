@@ -95,7 +95,7 @@ open index.html
 ## Deployment - with GitHub
 
  1. push your changes to github
- ```bash
+``` 
 git add .
 git commit -m "Update WebOS"
 git push origin main
@@ -108,7 +108,7 @@ git push origin main
  4. under Branch, select main (or master) and keep folder as / (root).
 
  5. click Save — wait a bit until a url is generated, that is where your site will be live at. (this is how mine looks like: https://lunaa133.github.io/spideyy/)
-```
+
 ---
 
 <div align="center">
